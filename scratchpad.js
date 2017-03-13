@@ -41,8 +41,56 @@ function fibHelper(n) {
 	}
 	return { 'value': value, 'html': div };
 }
+
+function pellHelper(n) {
+	var value;
+	var div = document.createElement('div');
+	div.setAttribute("class", "fib");
+
+	// leaf nodes aka. base case
+	if (n < 3) {
+		if (n === 0) {
+			value = 0;
+		}
+		else if (n === 1) {
+			value = 1;
+		}
+		else if (n === 2){
+			value = 2;
+		}
+		var p = document.createElement('p');
+		p.textContent = 'Pell(' + n + ') = ' + value;
+		div.appendChild(p)
+	}
+	else {
+		var left = pellHelper(n - 1);
+		var clas = left.html.getAttribute("class");
+		left.html.setAttribute("class", clas + " fib-left");
+
+		var right = pellHelper(n - 2);
+		clas = right.html.getAttribute("class");
+		right.html.setAttribute("class", clas + " fib-right");
+
+		value = left.value + right.value;
+		var p = document.createElement('p');
+		p.textContent = 'Pell(' + n + ') = ' + value;
+		div.appendChild(p);
+
+		div.appendChild(left.html);
+		div.appendChild(right.html);
+	}
+	return { 'value': value, 'html': div };
+}
+
+
 var fib = function (n, node) {
 	var tree = fibHelper(n)
+		node.appendChild(tree.html);
+		//node.style = "display: inline-block;";
+	  node.setAttribute("id", "fib");
+}
+var pell = function (n, node) {
+	var tree = pellHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
 	  node.setAttribute("id", "fib");
@@ -129,7 +177,6 @@ document.querySelector('body').appendChild(style);
 	document.body.appendChild(div);
 }('red', 'fib'));
 
-fib(9, document.querySelector('.red'))
 
 
 // divMakerMaker() is a function which returns a function
@@ -151,5 +198,5 @@ var yellowDiv = divMakerMaker('yellow', 'yomama');
 blueDiv();
 yellowDiv();
 
-fib(10, document.querySelector('.blue'))
-fib(11, document.querySelector('.yellow'))
+fib(11, document.querySelector('.red'))
+pell(11, document.querySelector('.blue'))
