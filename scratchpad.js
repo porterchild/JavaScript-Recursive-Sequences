@@ -119,6 +119,7 @@ function tribHelper(n) {
 		div.appendChild(p);
 
 		div.appendChild(left.html);
+		div.appendChild(center.html);
 		div.appendChild(right.html);
 	}
 	return { 'value': value, 'html': div };
@@ -148,7 +149,8 @@ var style = document.createElement('style');
 style.textContent =
 	"#fib {" +
 	"	display: inline-block;" +
-	"	width: 20000px;" +
+	"	width: 40000px;" +
+	"	white-space: nowrap;" +
 	"}" +
 	"" +
 	".fib {" +
@@ -168,9 +170,10 @@ style.textContent =
 	"}" +
 	"" +
 	".fib-center {" +
-	"	float: right;" +
+	"	float: center;" +
 	"	display: inline-block;" +
 	"	margin-left: 4px;" +
+	"	margin-right: 4px;" +
 	"}" +
 	"" +
 	".shadowed {" +
@@ -204,7 +207,7 @@ style.textContent =
 	"" +
 	".blue {" +
 	"	border-color: rgb(0,0,255);" +
-	"	background:   rgb(60,60,180);" +
+	"	background:   rgb(60,130,180);" +
 	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
 	"}" +
 	"" +
@@ -247,7 +250,7 @@ var divMakerMaker = function(color, id) {
 }
 
 var blueDiv = divMakerMaker('blue', 'fib');
-var yellowDiv = divMakerMaker('yellow', 'yomama');
+var yellowDiv = divMakerMaker('yellow', 'fib');
 
 blueDiv();
 yellowDiv();
