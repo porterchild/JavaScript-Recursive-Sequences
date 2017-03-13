@@ -257,6 +257,22 @@ yellowDiv();
 
 document.title = "Fib, Pell, and Trib Trees"
 
+
 fib(11, document.querySelector('.red'))
 pell(11, document.querySelector('.blue'))
 trib(11, document.querySelector('.yellow'))
+
+var fibLink = "https://oeis.org/A000045"
+var pellLink = "https://oeis.org/A000129"
+var tribLink = "https://oeis.org/A000073"
+function linkAdder(link){
+	var a = document.createElement('a');
+	a.href = link
+	a.innerHTML = 'Link to: ' + link;
+	var div = document.createElement('div');
+	div.appendChild(a);
+	document.body.appendChild(div);
+}
+linkAdder(fibLink);
+linkAdder(pellLink);
+linkAdder(tribLink);
