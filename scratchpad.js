@@ -80,6 +80,51 @@ function pellHelper(n) {
 }
 
 
+function tribHelper(n) {
+	var value;
+	var div = document.createElement('div');
+	div.setAttribute("class", "fib");
+
+	// leaf nodes aka. base case
+	if (n < 3) {
+		if (n === 0) {
+			value = 0;
+		}
+		else if (n === 1) {
+			value = 1;
+		}
+		else if (n===2) {
+			value = 1;
+		}
+		var p = document.createElement('p');
+		p.textContent = 'Trib(' + n + ') = ' + value;
+		div.appendChild(p)
+	}
+	else {
+		var left = tribHelper(n - 1);
+		var clas = left.html.getAttribute("class");
+		left.html.setAttribute("class", clas + " fib-left");
+
+		var center = tribHelper(n - 2);
+		var clas = center.html.getAttribute("class");
+		center.html.setAttribute("class", clas + " fib-center");
+
+		var right = tribHelper(n - 3);
+		clas = right.html.getAttribute("class");
+		right.html.setAttribute("class", clas + " fib-right");
+
+		value = left.value + center.value + right.value;
+		var p = document.createElement('p');
+		p.textContent = 'Trib(' + n + ') = ' + value;
+		div.appendChild(p);
+
+		div.appendChild(left.html);
+		div.appendChild(right.html);
+	}
+	return { 'value': value, 'html': div };
+}
+
+
 var fib = function (n, node) {
 	var tree = fibHelper(n)
 		node.appendChild(tree.html);
@@ -88,6 +133,12 @@ var fib = function (n, node) {
 }
 var pell = function (n, node) {
 	var tree = pellHelper(n)
+		node.appendChild(tree.html);
+		//node.style = "display: inline-block;";
+	  node.setAttribute("id", "fib");
+}
+var trib = function (n, node) {
+	var tree = tribHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
 	  node.setAttribute("id", "fib");
@@ -111,6 +162,12 @@ style.textContent =
 	"}" +
 	"" +
 	".fib-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+	"" +
+	".fib-center {" +
 	"	float: right;" +
 	"	display: inline-block;" +
 	"	margin-left: 4px;" +
@@ -195,5 +252,8 @@ var yellowDiv = divMakerMaker('yellow', 'yomama');
 blueDiv();
 yellowDiv();
 
+document.title = "Fib, Pell, and Trib Trees"
+
 fib(11, document.querySelector('.red'))
 pell(11, document.querySelector('.blue'))
+trib(11, document.querySelector('.yellow'))
