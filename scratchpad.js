@@ -48,15 +48,12 @@ function pellHelper(n) {
 	div.setAttribute("class", "fib");
 
 	// leaf nodes aka. base case
-	if (n < 3) {
+	if (n < 2) {
 		if (n === 0) {
 			value = 0;
 		}
 		else if (n === 1) {
 			value = 1;
-		}
-		else if (n === 2){
-			value = 2;
 		}
 		var p = document.createElement('p');
 		p.textContent = 'Pell(' + n + ') = ' + value;
@@ -71,7 +68,7 @@ function pellHelper(n) {
 		clas = right.html.getAttribute("class");
 		right.html.setAttribute("class", clas + " fib-right");
 
-		value = left.value + right.value;
+		value = 2*left.value + right.value;
 		var p = document.createElement('p');
 		p.textContent = 'Pell(' + n + ') = ' + value;
 		div.appendChild(p);
