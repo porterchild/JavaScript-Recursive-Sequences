@@ -145,6 +145,18 @@ var trib = function (n, node) {
 	  node.setAttribute("id", "fib");
 }
 
+var fibButton = function(me){
+	var form = me.parentNode;
+	var slider = form.querySelector('input');
+	var value = slider.value;
+	fib(value, form.parentNode);
+}
+var fibSlider = function(me){
+	var form = me.parentNode;
+	var button = form.querySelector('button');
+	button.textContent = 'Fib(' + me.value+ ')';
+}
+
 var style = document.createElement('style');
 style.textContent =
 	"#fib {" +
