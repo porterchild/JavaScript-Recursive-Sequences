@@ -9,7 +9,7 @@ function fibHelper(n) {
 	var value;
 	var div = document.createElement('div');
 	div.setAttribute("class", "fib");
-
+	n = parseInt(n);
 	// leaf nodes aka. base case
 	if (n < 2) {
 		if (n === 0) {
@@ -145,27 +145,29 @@ var trib = function (n, node) {
 	  node.setAttribute("id", "fib");
 }
 
-var fibButton = function(me){
+var fibButton = function(me) {
 	var form = me.parentNode;
 	var slider = form.querySelector('input');
 	var value = slider.value;
 	fib(value, form.parentNode);
 }
-var fibSlider = function(me){
+
+var fibSlider = function(me) {
 	var form = me.parentNode;
 	var button = form.querySelector('button');
-	button.textContent = 'Fib(' + me.value+ ')';
+	button.textContent = 'Fib(' + me.value + ')';
 }
 
 var style = document.createElement('style');
 style.textContent =
 	"#fib {" +
 	"	display: inline-block;" +
-	"	width: 40000px;" +
-	"	white-space: nowrap;" +
+	//"	width: 2000px;" +
+	//"	white-space: nowrap;" +
 	"}" +
 	"" +
 	".fib {" +
+	"	display: inline-block;" +
 	"	background-color: rgba(0,0,255,0.1);" +
 	"}" +
 	"" +
@@ -206,6 +208,11 @@ style.textContent =
 	"}" +
 	"" +
 	".red {" +
+	"	border-color: rgb(255,0,0);" +
+	"	background:   rgb(180,60,60);" +
+	"	box-shadow: 1px 1px 2px rgba(200,0,0,0.4);" +
+	"}" +
+	".red box with slider {" +
 	"	border-color: rgb(255,0,0);" +
 	"	background:   rgb(180,60,60);" +
 	"	box-shadow: 1px 1px 2px rgba(200,0,0,0.4);" +
@@ -270,9 +277,9 @@ yellowDiv();
 document.title = "Fib, Pell, and Trib Trees"
 
 
-fib(11, document.querySelector('.red'))
-pell(11, document.querySelector('.blue'))
-trib(11, document.querySelector('.yellow'))
+//fib(11, document.querySelector('.red'))
+//pell(11, document.querySelector('.blue'))
+//trib(11, document.querySelector('.yellow'))
 
 var fibLink = "https://oeis.org/A000045"
 var pellLink = "https://oeis.org/A000129"
