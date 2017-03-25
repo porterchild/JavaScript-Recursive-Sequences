@@ -46,6 +46,7 @@ function pellHelper(n) {
 	var value;
 	var div = document.createElement('div');
 	div.setAttribute("class", "fib");
+	n = parseInt(n);
 
 	// leaf nodes aka. base case
 	if (n < 2) {
@@ -83,6 +84,8 @@ function pellHelper(n) {
 function tribHelper(n) {
 	var value;
 	var div = document.createElement('div');
+	n = parseInt(n);
+
 	div.setAttribute("class", "fib");
 
 	// leaf nodes aka. base case
@@ -137,12 +140,20 @@ var fib = function (n, node) {
 	  node.setAttribute("id", "fib");
 }
 var pell = function (n, node) {
+	var pellTree = node.querySelector('div.fib');
+ 	if (pellTree) {
+ 		node.removeChild(pellTree);
+ 	}
 	var tree = pellHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
 	  node.setAttribute("id", "fib");
 }
 var trib = function (n, node) {
+	var tribTree = node.querySelector('div.fib');
+ 	if (tribTree) {
+ 		node.removeChild(tribTree);
+ 	}
 	var tree = tribHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
@@ -174,6 +185,19 @@ var pellSlider = function(me) {
 	var button = form.querySelector('button');
 	button.textContent = 'Pell(' + me.value + ')';
 }
+var tribButton = function(me) {
+	var form = me.parentNode;
+	var slider = form.querySelector('input');
+	var value = slider.value;
+	trib(value, form.parentNode);
+}
+
+var tribSlider = function(me) {
+	var form = me.parentNode;
+	var button = form.querySelector('button');
+	button.textContent = 'Trib(' + me.value + ')';
+}
+
 
 var style = document.createElement('style');
 style.textContent =
@@ -273,12 +297,12 @@ document.querySelector('body').appendChild(style);
 //      later incorporate other JavaScript programs from elsewhere.
 //   1) Collect a few related program statements and keep them together in a single unit.
 // https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
-( function(color, id) {
-	var div = document.createElement('div');
-	div.setAttribute('class', color + ' shadowed stuff-box');
-	div.setAttribute('id', id);
-	document.body.appendChild(div);
-}('red', 'fib'));
+// ( function(color, id) {
+// 	var div = document.createElement('div');
+// 	div.setAttribute('class', color + ' shadowed stuff-box');
+// 	div.setAttribute('id', id);
+// 	document.body.appendChild(div);
+// }('red', 'fib'));
 
 
 
