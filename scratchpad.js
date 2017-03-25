@@ -127,6 +127,10 @@ function tribHelper(n) {
 
 
 var fib = function (n, node) {
+	var fibTree = node.querySelector('div.fib');
+ 	if (fibTree) {
+ 		node.removeChild(fibTree);
+ 	}
 	var tree = fibHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
@@ -156,6 +160,19 @@ var fibSlider = function(me) {
 	var form = me.parentNode;
 	var button = form.querySelector('button');
 	button.textContent = 'Fib(' + me.value + ')';
+}
+
+var pellButton = function(me) {
+	var form = me.parentNode;
+	var slider = form.querySelector('input');
+	var value = slider.value;
+	pell(value, form.parentNode);
+}
+
+var pellSlider = function(me) {
+	var form = me.parentNode;
+	var button = form.querySelector('button');
+	button.textContent = 'Pell(' + me.value + ')';
 }
 
 var style = document.createElement('style');
@@ -223,8 +240,18 @@ style.textContent =
 	"	background:   rgb(180,180,60);" +
 	"	box-shadow: 1px 1px 2px rgba(200,200,0,0.4);" +
 	"}" +
+	".yellow box with slider{" +
+	"	border-color: rgb(255,255,0);" +
+	"	background:   rgb(180,180,60);" +
+	"	box-shadow: 1px 1px 2px rgba(200,200,0,0.4);" +
+	"}" +
 	"" +
 	".blue {" +
+	"	border-color: rgb(0,0,255);" +
+	"	background:   rgb(60,130,180);" +
+	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
+	"}" +
+	".blue box with slider {" +
 	"	border-color: rgb(0,0,255);" +
 	"	background:   rgb(60,130,180);" +
 	"	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);" +
@@ -271,8 +298,8 @@ var divMakerMaker = function(color, id) {
 var blueDiv = divMakerMaker('blue', 'fib');
 var yellowDiv = divMakerMaker('yellow', 'fib');
 
-blueDiv();
-yellowDiv();
+//blueDiv();
+//yellowDiv();
 
 document.title = "Fib, Pell, and Trib Trees"
 
